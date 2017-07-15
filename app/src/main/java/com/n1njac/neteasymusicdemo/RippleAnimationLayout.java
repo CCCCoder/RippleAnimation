@@ -36,27 +36,30 @@ public class RippleAnimationLayout extends RelativeLayout {
 
     private AnimatorSet mAnimatorSet;
 
-    //设置每个view的等待时间
-    private int delayTime = rippleDuration / rippleAmount;
 
     private static int DEFAULT_TYPE = 0;
     private static int DEFAULT_AMOUNT = 5;
     private static int DEFAULT_DURATION = 2000;
     private static float DEFAULT_SCALE = 5.0f;
 
+
     private List<RippleCircleView> circleViewList = new ArrayList<>();
 
 
     public RippleAnimationLayout(Context context) {
-        super(context);
+        this(context, null);
     }
 
     public RippleAnimationLayout(Context context, AttributeSet attrs) {
-        super(context, attrs);
+        this(context, attrs, 0);
     }
 
     public RippleAnimationLayout(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+
+        if (isInEditMode()){
+            return;
+        }
 
         TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.RippleAnimationLayout);
         rippleType = typedArray.getInt(R.styleable.RippleAnimationLayout_rippleType, DEFAULT_TYPE);
@@ -67,6 +70,10 @@ public class RippleAnimationLayout extends RelativeLayout {
         rippleScale = typedArray.getFloat(R.styleable.RippleAnimationLayout_rippleScale, DEFAULT_SCALE);
         rippleAmount = typedArray.getInt(R.styleable.RippleAnimationLayout_rippleAmount, DEFAULT_AMOUNT);
         typedArray.recycle();
+
+        //设置每个view的等待时间
+        int delayTime = rippleDuration / rippleAmount;
+
         mPaint = new Paint();
         mPaint.setAntiAlias(true);
         if (rippleType == 0) {
@@ -90,21 +97,21 @@ public class RippleAnimationLayout extends RelativeLayout {
             circleViewList.add(rippleCircleView);
             ObjectAnimator scaleXAnimator = ObjectAnimator.ofFloat(rippleCircleView, "scaleX", 1.0f, rippleScale);
             scaleXAnimator.setRepeatCount(ValueAnimator.INFINITE);
-            scaleXAnimator.setRepeatCount(ValueAnimator.RESTART);
+            scaleXAnimator.setRepeatMode(ObjectAnimator.RESTART);
             scaleXAnimator.setDuration(rippleDuration);
             scaleXAnimator.setStartDelay(i * delayTime);
             animatorArrayList.add(scaleXAnimator);
 
             ObjectAnimator scaleYAnimator = ObjectAnimator.ofFloat(rippleCircleView, "scaleY", 1.0f, rippleScale);
             scaleYAnimator.setRepeatCount(ValueAnimator.INFINITE);
-            scaleYAnimator.setRepeatCount(ValueAnimator.RESTART);
+            scaleYAnimator.setRepeatMode(ObjectAnimator.RESTART);
             scaleYAnimator.setDuration(rippleDuration);
             scaleYAnimator.setStartDelay(i * delayTime);
             animatorArrayList.add(scaleYAnimator);
 
             ObjectAnimator alphaAnimator = ObjectAnimator.ofFloat(rippleCircleView, "Alpha", 1.0f, 0.0f);
             alphaAnimator.setRepeatCount(ValueAnimator.INFINITE);
-            alphaAnimator.setRepeatCount(ValueAnimator.RESTART);
+            alphaAnimator.setRepeatMode(ObjectAnimator.RESTART);
             alphaAnimator.setDuration(rippleDuration);
             alphaAnimator.setStartDelay(i * delayTime);
             animatorArrayList.add(alphaAnimator);
