@@ -1,26 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.n1njac.neteasymusicdemo.RippleAnimationLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/ripple_layout"
-    android:layout_width="360dp"
-    android:layout_height="360dp"
-    app:rippleScale="6"
-    app:rippleDuration="1500"
-    app:rippleType="fill"
-    app:rippleRadius="@dimen/rippleRadius"
-    app:rippleStokeWidth="@dimen/rippleStrokeWidth"
-    app:rippleAmount="5"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/bg_color"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     tools:context="com.n1njac.neteasymusicdemo.MainActivity">
 
 
-    <ImageView
-        android:id="@+id/netease_iv"
-        android:layout_centerInParent="true"
-        android:src="@mipmap/music"
-        android:layout_width="100dp"
-        android:layout_height="100dp" />
+    <com.n1njac.neteasymusicdemo.RippleAnimationLayout
+        android:id="@+id/ripple_layout"
+        android:layout_marginTop="70dp"
+        android:layout_gravity="center_horizontal"
+        app:rippleScale="6"
+        app:rippleDuration="2000"
+        app:rippleType="fill"
+        app:rippleRadius="@dimen/rippleRadius"
+        app:rippleStokeWidth="@dimen/rippleStrokeWidth"
+        app:rippleAmount="5"
+        android:layout_width="360dp"
+        android:layout_height="400dp">
+
+        <ImageView
+            android:id="@+id/netease_iv"
+            android:layout_centerInParent="true"
+            android:src="@mipmap/music"
+            android:layout_width="100dp"
+            android:layout_height="100dp" />
+
+    </com.n1njac.neteasymusicdemo.RippleAnimationLayout>
 
 
+    <TextView
+        android:textSize="14sp"
+        android:textColor="#fff"
+        android:text="点击听歌识曲"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:textColor="@android:color/darker_gray"
+        android:textSize="12sp"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:text="听歌识曲，识别你周围播放的歌曲"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
-</com.n1njac.neteasymusicdemo.RippleAnimationLayout>
+
+</LinearLayout>
