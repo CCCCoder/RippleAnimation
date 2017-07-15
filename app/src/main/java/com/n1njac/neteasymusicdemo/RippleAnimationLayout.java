@@ -102,6 +102,7 @@ public class RippleAnimationLayout extends RelativeLayout {
             scaleXAnimator.setStartDelay(i * delayTime);
             animatorArrayList.add(scaleXAnimator);
 
+            //
             ObjectAnimator scaleYAnimator = ObjectAnimator.ofFloat(rippleCircleView, "scaleY", 1.0f, rippleScale);
             scaleYAnimator.setRepeatCount(ValueAnimator.INFINITE);
             scaleYAnimator.setRepeatMode(ObjectAnimator.RESTART);
